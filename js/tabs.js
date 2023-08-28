@@ -1,30 +1,33 @@
 const tabButtonS = document.querySelectorAll('.design-list__item');
-const tabDesckriptions = document.querySelectorAll('.design__descr');
-const tabImg = document.querySelectorAll('.design-images');
-
-const changeContent = (array, value) => {
-    array.forEach((elem) => {
-        if (elem.dataset.tabsField === value) {
-            elem.classList.remove('hidden')
-        } else {
-            elem.classList.add('hidden')
-        }
-    })
-}
+const tabDesckriptions = document.querySelectorAll('.design__descr')
+const tabImg = document.querySelectorAll('.design-images')
 
 tabButtonS.forEach((oneParametr) => {
 
     oneParametr.addEventListener('click', (event) => {
         const dataValue = oneParametr.dataset.tabsHandler;
 
-        changeContent(tabImg, dataValue);
-        changeContent(tabDesckriptions, dataValue);
+        tabDesckriptions.forEach((descr) => {
+            if (descr.dataset.tabsField === dataValue) {
+                descr.classList.remove('hidden')
+            } else {
+                descr.classList.add('hidden')
+            }
+        })
 
-        tabButtonS.forEach((btn) => {
-           if (btn === event.target) {
-            btn.classList.add('design-list__item_active')
+        tabImg.forEach((image) => {
+            if (image.dataset.tabsField === dataValue) {
+                image.classList.remove('hidden')
+            } else {
+                image.classList.add('hidden')
+            }
+        })
+
+        tabButtonS.forEach((res) => {
+           if (res === event.target) {
+            res.classList.add('design-list__item_active')
            } else {
-            btn.classList.remove('design-list__item_active')
+            res.classList.remove('design-list__item_active')
            }
         })
     })
